@@ -233,6 +233,15 @@ noremap <Leader>n :<C-u>tabnew<CR>
 " Close currently buffer
 noremap <leader>c :bd<CR>
 
+"hacer bookmarks en nerdtre
+"Hace bookmark de donde esta el cursor
+noremap <leader>nb :Bookmark<CR>
+"borra un bookmark
+" noremap <leader>nob :Bookmark<CR>
+"borra todos los bookmarks
+" noremap <leader>nab :Bookmark<CR>
+
+
 
 "----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
 
