@@ -160,12 +160,15 @@ inoremap <silent><expr><cr> pumvisible() ? coc#_select_confirm()
 "agregar 4 espacios al tab al escribir
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> cd <Plug>(coc-definition)
+nmap <silent> ci <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader>qf  <Plug>(coc-fix-current)
-"gf sirve para ir al archivo que esta siendo llamado
+nmap <leader> qf <Plug>(coc-fix-current)
+" gf abre el archivo que se esta llamando, tomado por vim
+" gd go to definition, tomado por vim
+" gi go to implementation, tomado por vim
+
 
 " Use K to show documentation in preview window.
 function! s:show_documentation()
