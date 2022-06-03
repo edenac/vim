@@ -167,7 +167,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader> qf <Plug>(coc-fix-current)
 " gf abre el archivo que se esta llamando, tomado por vim
 " gd go to definition, tomado por vim
-" gi go to implementation, tomado por vim
+" gi go to implementation, tomado por vim.
 
 
 " Use K to show documentation in preview window.
