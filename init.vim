@@ -118,6 +118,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'xuyuanp/scrollbar.nvim'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 
 
 if isdirectory('/usr/local/opt/fzf')
@@ -619,6 +622,34 @@ let g:lens#height_resize_min =20
 let g:lens#width_resize_max = 200
 let g:lens#width_resize_min = 20
 "---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
+
+"---------------------------------------------------------------------------------------- telescope -----------------------------------------------------------------------------
+"---normal files---
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+
+"---buffers---
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+
+"---git---
+"files
+nnoremap <leader>tgf <cmd>Telescope git_files<cr>
+
+"branches
+"tiene mas integraciones dentro pues se puede hacer reset hard con c-t
+nnoremap <leader>tgb <cmd>Telescope git_branches<cr>
+
+"commits
+nnoremap <leader>tgc <cmd>Telescope git_commits<cr>
+
+"difs
+nnoremap <leader>tgd <cmd>Telescope git_bcommits<cr>
+
+"status
+nnoremap <leader>tgs <cmd>Telescope git_status<cr>
+
+
+"---------------------------------------------------------------------------------------- telescope -----------------------------------------------------------------------------
+
 
 "----------------------------------------------------------------------------------------------------------Marcos visuales----------------------------------------------------------------------------
 
