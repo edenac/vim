@@ -1,4 +1,5 @@
 "---------------------------------------------------------------------------------------------------setting----------------------------------------------------------------------------------------------
+let g:skip_defaults_vim = 1
 :set number
 :set relativenumber
 :set autoindent
@@ -6,7 +7,6 @@
 :set shiftwidth=4
 :set smarttab
 :set softtabstop=4
-:set mouse=a
 :set splitbelow
 :set splitright
 :set showcmd
@@ -27,7 +27,6 @@
 :set guioptions=egmrti
 :set gfn=Monospace\ 10
 :set ruler
-:set number
 :set scrolloff=3
 :set laststatus=2
 :set modeline
@@ -38,10 +37,13 @@
 :set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 :set clipboard=unnamedplus
 :set shell=sh
-":set transparency =7 darle transparencia 
-":set gcr=a:blinkon0
+:set mouse=a
+:set mouse-=a
+:autocmd InsertEnter,InsertLeave * set cul!
+" :set gcr=a:blinkon0
 
-"---------------------------------------------------------------------------------------------------setting----------------------------------------------------------------------------------------------
+
+""---------------------------------------------------------------------------------------------------setting----------------------------------------------------------------------------------------------
 
 "---------------------------------------------------------------------------------------------------funciones para la inastalacion de plugin------------------------------------------------------------
 
@@ -113,7 +115,9 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+Plug 'xuyuanp/scrollbar.nvim'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 
 
 if isdirectory('/usr/local/opt/fzf')
@@ -161,13 +165,13 @@ inoremap <silent><expr><cr> pumvisible() ? coc#_select_confirm()
 
 " GoTo code navigation.
 nmap <silent> cd <Plug>(coc-definition)
-nmap <silent> ci <Plug>(coc-implementation)
+nmap <silent> cu <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader> qf <Plug>(coc-fix-current)
-" gf abre el archivo que se esta llamando, tomado por vim
-" gd go to definition, tomado por vim
-" gi go to implementation, tomado por vim.
+" gf abre el archivo que se esta llamando tomado por vim
+" gd go to definition tomado por vim
+" gi go to implementation tomado por vim
 
 
 " Use K to show documentation in preview window.
@@ -191,10 +195,13 @@ map <F3> :NERDTreeToggle<CR>
 " abrir terminal, open explorer, restart neovim 
 " poner aqui los atajos que esplico la linea anterior
 " resize split,  + = se agranda , - = se achica
-noremap <silent> <right> :vertical resize +5<CR>
-noremap <silent> <left> :vertical resize -5<CR>
-noremap <silent> <up> :resize +5<CR>
-noremap <silent> <down> :resize -5<CR>
+
+
+"animate
+noremap <silent> <right> :call animate#window_delta_width(40)<CR> 
+noremap <silent> <left> :call animate#window_delta_width(-40)<CR>
+noremap <silent> <up> :call animate#window_delta_height(40)<CR>
+noremap <silent> <down> :call animate#window_delta_height(-40)<CR>
 
 "Ventanas nuevas derecha y abajo por defectos debido a los seteos que hice
 nmap <c-t> :<C-u>vsplit tabnew<CR>
@@ -588,6 +595,30 @@ if filereadable(expand("~/.config/nvim/local_init.vim"))
 endif
 
 "---------------------------------------------------------------------------------------- Include user's local vim config-----------------------------------------------------------------------------
+
+"---------------------------------------------------------------------------------------- scrollbar -----------------------------------------------------------------------------
+augroup ScrollbarInit
+    autocmd!
+    autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+    autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+    autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+augroup end
+let g:scrollbar_right_offset = 1
+let g:scrollbar_width = 1
+  let g:scrollbar_shape = {
+     \ 'head': '',
+     \ 'body': '█',
+     \ 'tail': '',
+     \ }
+"---------------------------------------------------------------------------------------- scrollbar -----------------------------------------------------------------------------
+
+"---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
+let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
+let g:lens#height_resize_max = 55
+let g:lens#height_resize_min =20
+let g:lens#width_resize_max = 200
+let g:lens#width_resize_min = 20
+"---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
 
 "----------------------------------------------------------------------------------------------------------Marcos visuales----------------------------------------------------------------------------
 
