@@ -120,7 +120,7 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
+Plug 'ThePrimeagen/harpoon'
 
 
 if isdirectory('/usr/local/opt/fzf')
@@ -275,6 +275,7 @@ endif
 "borrar busqueda para desmarcar la palabra resaltada
 noremap <leader><space> :nohlsearch<CR>
 
+"----------------------------------------git ---------------------------
 " Git y fugitive
 
 "Git init (necesario instalar el Flog para inresar comandos directos de git
@@ -316,6 +317,7 @@ noremap <Leader>go :GBrowse<CR>
 " Git-Flog
 noremap <Leader>gf :Flogsplit<CR>
 
+"----------------------------------------git ---------------------------
 "cerrar sesion de o buffer que lo tengo con cierra la sesion por completo de
 "todos los buffers por completo
 nnoremap <leader>sc :CloseSession<CR>
@@ -333,6 +335,54 @@ nnoremap <leader>e :FZF -m<CR>
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
+"------------------------------------- telescope ----------------------------
+"---normal files---
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+
+"---buffers---
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+
+"---git---
+"files
+nnoremap <leader>tgf <cmd>Telescope git_files<cr>
+
+"branches
+"tiene mas integraciones dentro pues se puede hacer reset hard con c-t
+nnoremap <leader>tgb <cmd>Telescope git_branches<cr>
+
+"commits
+nnoremap <leader>tgc <cmd>Telescope git_commits<cr>
+
+"difs
+nnoremap <leader>tgd <cmd>Telescope git_bcommits<cr>
+
+"status
+nnoremap <leader>tgs <cmd>Telescope git_status<cr>
+
+"------------------------------------- telescope ----------------------------
+
+
+"-------------------------------------- harpoon -----------------------------
+" require("telescope").load_extension('harpoon') --harpoo agregado como
+" extension de telescope con fin de mostrar previews
+"menu de harpoon como extension de telescope para los previews
+" nnoremap<leader>hm :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" menu de harpo con previews
+nnoremap<leader>hm :Telescope harpoon marks<CR>
+
+"add marks/file
+nmap<leader>ha :lua require("harpoon.mark").add_file()<CR>
+
+"ir ir directo a las markas de harpoon como el cambio de ventanas con ctrl
+nmap <leader>h1 :lua require("harpoon.ui").nav_file(1)<CR>
+nmap <leader>h2 :lua require("harpoon.ui").nav_file(2)<CR>
+nmap <leader>h3 :lua require("harpoon.ui").nav_file(3)<CR>
+nmap <leader>h4 :lua require("harpoon.ui").nav_file(4)<CR>
+
+
+"-------------------------------------- harpoon -----------------------------
+
+
 "----------------------------------------------------------------------------------shortcuts customized lider:, ----------------------------------------------------------------------------------------
 
 "-----------------------------------------------------------------------------------------visualmode----------------------------------------------------------------------------------------------------
@@ -346,6 +396,13 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 "----------------------------------------------------------------------------------------visualmode----------------------------------------------------------------------------------------------------
+
+
+"---------------------------------------------------------------------------------------- terminal mode ----------------------------------------------------------------------------------------------------
+"salir de terminal a modo comando de vim
+:tnoremap <Esc> <C-\><C-n>
+
+"---------------------------------------------------------------------------------------- terminal mode ----------------------------------------------------------------------------------------------------
 
 "-----------------------------------------------------------------------------------------------------------Rules-------------------------------------------------------------------------------------
 
@@ -622,35 +679,6 @@ let g:lens#height_resize_min =20
 let g:lens#width_resize_max = 200
 let g:lens#width_resize_min = 20
 "---------------------------------------------------------------------------------------- lens -----------------------------------------------------------------------------
-
-"---------------------------------------------------------------------------------------- telescope -----------------------------------------------------------------------------
-"---normal files---
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-
-"---buffers---
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
-
-"---git---
-"files
-nnoremap <leader>tgf <cmd>Telescope git_files<cr>
-
-"branches
-"tiene mas integraciones dentro pues se puede hacer reset hard con c-t
-nnoremap <leader>tgb <cmd>Telescope git_branches<cr>
-
-"commits
-nnoremap <leader>tgc <cmd>Telescope git_commits<cr>
-
-"difs
-nnoremap <leader>tgd <cmd>Telescope git_bcommits<cr>
-
-"status
-nnoremap <leader>tgs <cmd>Telescope git_status<cr>
-
-
-"---------------------------------------------------------------------------------------- telescope -----------------------------------------------------------------------------
-
-
 "----------------------------------------------------------------------------------------------------------Marcos visuales----------------------------------------------------------------------------
 
 " vim-airline
