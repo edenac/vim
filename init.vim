@@ -121,6 +121,13 @@ Plug 'camspiers/lens.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'mhinz/vim-startify'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'cljoly/telescope-repo.nvim'
+Plug 'sharkdp/fd'
+
+
 
 
 if isdirectory('/usr/local/opt/fzf')
@@ -153,7 +160,23 @@ endif
 call plug#end()
 
 " ----------------------------------------------------------------------------------------------------PLUGS---------------------------------------------------------------------------------------------
+"-- startify --
+let g:startify_lists = [
+    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+    \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ { 'type': 'files',     'header': ['   MRU']            },
+    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+    \ { 'type': 'commands',  'header': ['   Commands']       },
+    \ ]
 
+let g:startify_bookmarks = [
+    \{ 'a': '~/.config/nvim/init.vim' },
+    \{ 's': '~/tujak' },
+    \]
+
+    " \{ 'd': '~/aqui' },ir agregando rutas puestas en bookmark
+    " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
+"-- startify --
 "---------------------------------------------------------------------------------------------------coc-------------------------------------------------------------------------------------------------
 
 " Required:
@@ -228,7 +251,7 @@ nnoremap N Nzzzv
 "----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
 
 let mapleader=" "
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>f <Plug>(easymotion-sn)
 "nmap es que funciona solamente en modo normal
 "Atajos personalizados
 nmap <Leader>w :w<CR>
@@ -254,6 +277,18 @@ noremap <leader>nb :Bookmark<CR>
 "borra todos los bookmarks
 " noremap <leader>nab :Bookmark<CR>
 
+"-- startif --
+nmap<leader>st :Startify<CR>
+nmap<leader>ss :SSave<CR>
+nmap<leader>sd :SDelete<CR>
+nmap<leader>sl :SLoad<CR>
+nmap<leader>sc :SClose<CR>
+"-- startif --
+
+"-- spectre --
+
+
+"-- spectre --
 
 
 "----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
@@ -320,7 +355,7 @@ noremap <Leader>gf :Flogsplit<CR>
 "----------------------------------------git ---------------------------
 "cerrar sesion de o buffer que lo tengo con cierra la sesion por completo de
 "todos los buffers por completo
-nnoremap <leader>sc :CloseSession<CR>
+" nnoremap <leader>sc :CloseSession<CR>
 
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -337,10 +372,10 @@ nmap <leader>y :History:<CR>
 
 "------------------------------------- telescope ----------------------------
 "---normal files---
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
+nnoremap <leader>tff <cmd>Telescope find_files<cr>
 
 "---buffers---
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
+nnoremap <leader>tbf <cmd>Telescope buffers<cr>
 
 "---git---
 "files
@@ -359,6 +394,16 @@ nnoremap <leader>tgd <cmd>Telescope git_bcommits<cr>
 "status
 nnoremap <leader>tgs <cmd>Telescope git_status<cr>
 
+"-- telescope file browser --
+nnoremap <leader>tfb <cmd>lua require("telescope").load_extension('file_browser')<CR><cmd>Telescope file_browser<CR>
+
+"-- telescope project
+nnoremap <leader>tpj <cmd>:lua require'telescope'.load_extension('project')<CR><cmd>Telescope project<CR>
+
+"-- telescope repo
+
+nnoremap <leader>trl <cmd>:lua require'telescope'.load_extension('repo')<CR><cmd>Telescope repo list<CR>
+
 "------------------------------------- telescope ----------------------------
 
 
@@ -368,7 +413,10 @@ nnoremap <leader>tgs <cmd>Telescope git_status<cr>
 "menu de harpoon como extension de telescope para los previews
 " nnoremap<leader>hm :lua require("harpoon.ui").toggle_quick_menu()<CR>
 " menu de harpo con previews
-nnoremap<leader>hm :Telescope harpoon marks<CR>
+nnoremap<leader>thm :Telescope harpoon marks<CR>
+
+"por si se ocupa cambiar de posicion las markas para accesos directos
+nnoremap<leader>hm :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 "add marks/file
 nmap<leader>ha :lua require("harpoon.mark").add_file()<CR>
@@ -381,7 +429,6 @@ nmap <leader>h4 :lua require("harpoon.ui").nav_file(4)<CR>
 
 
 "-------------------------------------- harpoon -----------------------------
-
 
 "----------------------------------------------------------------------------------shortcuts customized lider:, ----------------------------------------------------------------------------------------
 
