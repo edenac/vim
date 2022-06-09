@@ -126,7 +126,9 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'cljoly/telescope-repo.nvim'
 Plug 'sharkdp/fd'
-
+Plug 'windwp/nvim-spectre'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'wesQ3/vim-windowswap'
 
 
 
@@ -287,9 +289,32 @@ nmap<leader>sc :SClose<CR>
 
 "-- spectre --
 
+nnoremap <leader>S <cmd>lua require('spectre').open()<CR>
+
+"search current word
+
+nnoremap <leader>sw <cmd>lua require('spectre').open_visual({select_word=true})<CR>
+
+vnoremap <leader>so <cmd>lua require('spectre').open_visual()<CR>
+
+"  search in current file
+
+nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>
+
+" run command :Spectre"})
 
 "-- spectre --
 
+" -- windowswap --
+let g:windowswap_map_keys = 0 "prevent default bindings
+
+" nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
+
+" nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
+
+nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+
+" -- windowswap --
 
 "----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
 
@@ -631,10 +656,10 @@ endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" let g:UltiSnipsEditSplit="vertical"
 
 " ale
 let g:ale_linters = {}
