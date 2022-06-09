@@ -129,8 +129,12 @@ Plug 'sharkdp/fd'
 Plug 'windwp/nvim-spectre'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'wesQ3/vim-windowswap'
-
-
+Plug 'rcarriga/nvim-notify'
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'rcarriga/neotest'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -180,7 +184,6 @@ let g:startify_bookmarks = [
     " \{ 'f': '~/aqui' },ir agregando rutas que vaya poniendo en bookmark
 "-- startify --
 "---------------------------------------------------------------------------------------------------coc-------------------------------------------------------------------------------------------------
-
 " Required:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -315,6 +318,14 @@ let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
 
 " -- windowswap --
+
+" -- sniprun --
+nmap <leader>sr <Plug>SnipRun
+
+nmap <leader>sR <Plug>SnipRunOperator
+
+" vmap f <Plug>SnipRun
+" -- sniprun --
 
 "----------------------------------------------------------------------------------shortcuts customized lider: espacio----------------------------------------------------------------------------------
 
